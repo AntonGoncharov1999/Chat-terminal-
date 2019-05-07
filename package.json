@@ -1,0 +1,13 @@
+{
+  "name": "Chat",
+  "version": "1.0.0",
+  "description": "Node.js, Express, Socket.io ",
+  "main": "index.js",
+  "repository": "https://github.com/AntonGoncharov1999/Chat-terminal-.git",
+  "author": "Anton Goncharov ",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  }
+}
