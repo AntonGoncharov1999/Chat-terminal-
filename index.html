@@ -8,7 +8,11 @@
 	<title>Чат программа</title>
 	<style>
 		body {
-			background: #fff;
+			background: #000;
+			color: green;
+		}
+		.col-6{
+			border:  2px solid green;
 		}
 	</style>
 </head>
@@ -43,35 +47,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
-		// У каждого пользователя будет случайный стиль для блока с сообщенями
-		var min = 1;
-		var max = 6;
-		var random = Math.floor(Math.random() * (max - min)) + min;
-
-		// Устаналиваем класс в переменную в зависимости от случайного числа
-		// Эти классы взяты из Bootstrap стилей
-		var alertClass;
-		switch (random) {
-			case 1:
-				alertClass = 'secondary';
-				break;
-			case 2:
-				alertClass = 'danger';
-				break;
-			case 3:
-				alertClass = 'success';
-				break;
-			case 4:
-				alertClass = 'warning';
-				break;
-			case 5:
-				alertClass = 'info';
-				break;
-			case 6:
-				alertClass = 'light';
-				break;
-		}
-
 		// Функция для работы с данными на сайте
 		$(function() {
 			var socket = io.connect();
@@ -85,7 +60,7 @@
 				// Предотвращаем классическое поведение формы
 				event.preventDefault();
 				// в событие передаем различные параметры и данные
-				socket.emit('send mess', {mess: $textarea.val(), name: $name.val(), className: alertClass});
+				socket.emit('send mess', {mess: $textarea.val(), name: $name.val()});
 				// Очищаем поле с сообщением
 				$textarea.val('');
 			});
@@ -93,7 +68,7 @@
 			// Здесь отслеживаем событие 'add mess', 
 			socket.on('add mess', function(data) {
 				// Встраиваем полученное сообщение в блок с сообщениями
-				$all_messages.append("<div class='alert alert-" + data.className + "'><b>" + data.name + "</b>: " + data.mess + "</div>");
+				$all_messages.append("<div><b>"+ "$ " + data.name + "</b>: " + ">>> " + data.mess + "</div>");
 			});
 
 		});
